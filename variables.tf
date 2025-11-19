@@ -3,12 +3,12 @@ variable "region" {
 }
 
 variable "ami" {
-  default = "ami-0c55b159cbfafe1f0"  # Amazon Linux AMI
+  default = "ami-0022a23f36c57e940"  # Amazon Linux AMI
 }
 
 variable "instance_type" {
-  default = "t2.micro"
+  default = "t4g.micro"
 }
 
-variable "access_key" {}
-variable "access_key" {}
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
