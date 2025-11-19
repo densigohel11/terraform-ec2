@@ -9,3 +9,6 @@ variable "ami" {
 variable "instance_type" {
   default = "t2.micro"
 }
+
+variable "access_key" {}
+variable "access_key" {}
