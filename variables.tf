@@ -10,5 +10,5 @@ variable "instance_type" {
   default = "t4g.micro"
 }
 
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
+variable "aws-creds" {}
+variable "aws-creds" {}
