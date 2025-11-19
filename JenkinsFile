@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_ACCESS_KEY     = credentials('aws-access-key')
+        AWS_SECRET_KEY     = credentials('aws-secret-key')
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git url: 'https://github.com/densigohel11/terraform-ec2.git', branch: 'main'
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                sh """
+                    terraform init
+                """
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                sh """
+                    terraform plan \
+                      -var aws_access_key=$AWS_ACCESS_KEY \
+                      -var aws_secret_key=$AWS_SECRET_KEY \
+                      -out=tfplan
+                """
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                sh """
+                    terraform apply -auto-approve tfplan
+                """
+            }
+        }
+    }
+}
